@@ -67,7 +67,7 @@ After successful execution:
 
 👉 Access the application in browser:
 
-http://<EC2-Public-IP>
+http://EC2-Public-IP
 
 ✅ Output:
 
