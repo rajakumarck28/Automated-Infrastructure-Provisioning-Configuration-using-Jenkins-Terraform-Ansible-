@@ -49,7 +49,17 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ansible-playbook -i inventory playbook.yml'
+               withCredentials([sshUserPrivateKey(
+            credentialsId: 'ec2-ssh-key',
+            keyFileVariable: 'SSH_KEY'
+        )]) {
+            sh '''
+            export ANSIBLE_HOST_KEY_CHECKING=False
+
+            ansible-playbook -i inventory playbook.yml \
+            --private-key $SSH_KEY \
+            -u ec2-user
+            '''
             }
         }
     }
