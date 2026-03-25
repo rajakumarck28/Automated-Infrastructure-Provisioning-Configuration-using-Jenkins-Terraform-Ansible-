@@ -14,7 +14,7 @@ resource "aws_vpc" "my_vpc" {
 
 resource "aws_security_group" "my_sg" {
   name        = "my_sg"
-  vpc_id      = aws_vpc.my_vpc
+  vpc_id      = aws_vpc.my_vpc.id
 
 
 }
@@ -42,7 +42,7 @@ resource "aws_vpc_security_group_egress_rule" "my_sg_ob" {
 }
 
 resource "aws_route_table" "my_rt" {
-  vpc_id = aws_vpc.my_vpc
+  vpc_id = aws_vpc.my_vpc.id
 
   route {
     gateway_id = aws_internet_gateway.my_ig
@@ -50,5 +50,5 @@ resource "aws_route_table" "my_rt" {
 }
 
 resource "aws_internet_gateway" "my_ig" {
-  vpc_id = aws_vpc.my_vpc
+  vpc_id = aws_vpc.my_vpc.id
 }
