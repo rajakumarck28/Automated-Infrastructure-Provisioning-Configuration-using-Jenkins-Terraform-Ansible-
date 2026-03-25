@@ -7,12 +7,7 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/rajakumarck28/Automated-Infrastructure-Provisioning-Configuration-using-Jenkins-Terraform-Ansible-.git'
-            }
-        }
-
+        
         stage('Terraform Init') {
             steps {
                 sh 'terraform init'
