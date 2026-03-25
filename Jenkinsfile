@@ -31,6 +31,7 @@ pipeline {
 
                     terraform apply -auto-approve
                     '''
+                }
             }
         }
 
@@ -60,10 +61,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Deployment Successful!'
+            echo 'Deployment Successful!'
         }
         failure {
-            echo '❌ Pipeline Failed!'
+            echo 'Pipeline Failed!'
         }
     }
 }
