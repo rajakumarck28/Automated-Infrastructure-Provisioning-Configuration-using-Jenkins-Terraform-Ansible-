@@ -15,20 +15,22 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-creds']]) {
-                    sh '''
-                    export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-                    export AWS_DEFAULT_REGION=$AWS_REGION
+       stage('Run Ansible Playbook') {
+    steps {
+        withCredentials([sshUserPrivateKey(
+            credentialsId: 'ec2-ssh-key',
+            keyFileVariable: 'SSH_KEY'
+        )]) {
+            sh '''
+            export ANSIBLE_HOST_KEY_CHECKING=False
 
-                    terraform apply -auto-approve
-                    '''
-                }
-            }
+            ansible-playbook -i inventory playbook.yml \
+            --private-key $SSH_KEY \
+            -u ec2-user
+            '''
         }
+    }
+}
 
         stage('Get Public IP') {
             steps {
