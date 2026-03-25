@@ -46,6 +46,7 @@ resource "aws_route_table" "my_rt" {
 
   route {
     gateway_id = aws_internet_gateway.my_ig.id
+    cidr_block = "0.0.0.0/0"
   }
 }
 
