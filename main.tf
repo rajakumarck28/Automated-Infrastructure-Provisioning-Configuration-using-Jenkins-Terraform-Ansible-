@@ -20,7 +20,7 @@ resource "aws_security_group" "my_sg" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "my_sg_ib1" {
-  security_group_id = aws_security_group.my_sg
+  security_group_id = aws_security_group.my_sg.id
   cidr_ipv4         = aws_vpc.my_vpc.cidr_block
   from_port         = 443
   ip_protocol       = "tcp"
@@ -28,7 +28,7 @@ resource "aws_vpc_security_group_ingress_rule" "my_sg_ib1" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "my_sg_ib2" {
-  security_group_id = aws_security_group.my_sg
+  security_group_id = aws_security_group.my_sg.id
   cidr_ipv4         = aws_vpc.my_vpc.cidr_block
   from_port         = 22
   ip_protocol       = "tcp"
@@ -36,7 +36,7 @@ resource "aws_vpc_security_group_ingress_rule" "my_sg_ib2" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "my_sg_ob" {
-  security_group_id = aws_security_group.my_sg
+  security_group_id = aws_security_group.my_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
@@ -45,7 +45,7 @@ resource "aws_route_table" "my_rt" {
   vpc_id = aws_vpc.my_vpc.id
 
   route {
-    gateway_id = aws_internet_gateway.my_ig
+    gateway_id = aws_internet_gateway.my_ig.id
   }
 }
 
