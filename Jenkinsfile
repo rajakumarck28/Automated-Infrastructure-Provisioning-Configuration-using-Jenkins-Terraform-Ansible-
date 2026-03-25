@@ -32,7 +32,7 @@ pipeline {
 
         stage('Get Public IP') {
             steps {
-                sh 'terraform output -raw public_ip > ip.txt'
+                sh 'terraform output -raw instance_public_ip > ip.txt'
             }
         }
 
