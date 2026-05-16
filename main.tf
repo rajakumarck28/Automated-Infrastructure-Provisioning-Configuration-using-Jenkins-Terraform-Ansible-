@@ -1,7 +1,7 @@
 resource "aws_instance" "my_instance" {
   ami = "ami-0aaa636894689fa47"
   instance_type = "t3.micro"
-  key_name = "docker"
+  key_name = "akshay"
 
   
 }
