@@ -1,6 +1,5 @@
------
-🚀 Automated Infrastructure Provisioning & Configuration using Jenkins, Terraform & Ansible
------
+# 🚀 Automated Infrastructure Provisioning & Configuration using Jenkins, Terraform & Ansible
+
 ----
 📌 Project Overview
 ----
